@@ -4,7 +4,7 @@
  * @param  {[Function]} times       [节流的时间段]
  * @return {[Boolean]}              [被节流的函数]
  */
-export default function throttle(func, times) {
+function throttle(func, times) {
     var timeout,
         args,
         context;
@@ -22,3 +22,5 @@ export default function throttle(func, times) {
 
     }
 }
+
+module.exports = throttle

@@ -23,4 +23,4 @@ var getBrowser = (function browserSingle () {
   }
 })()
 
-export default getBrowser
+module.exports = getBrowser

@@ -2,11 +2,30 @@
   "name": "js-arsenal",
   "version": "0.0.1",
   "description": "Record some segments of the JavaScript code segment",
-  "scripts": {},
+  "scripts": {
+    "test": "jest test/* --coverage"
+  },
   "keywords": [
     "javascript",
     "code segment",
     "useful"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": ["js"],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "mapCoverage": true,
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "coverageDirectory": "<rootDir>/test/coverage",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**"
+    ]
+  }
 }

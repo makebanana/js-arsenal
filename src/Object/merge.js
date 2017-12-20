@@ -1,4 +1,4 @@
-export default function marge (target) {
+function marge (target) {
   for (let i = 1, j = arguments.length; i < j; i++) {
     let source = arguments[i] || {};
     for (let prop in source) {
@@ -13,3 +13,4 @@ export default function marge (target) {
 
   return target;
 };
+module.exports = marge

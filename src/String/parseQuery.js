@@ -4,9 +4,9 @@
  * @param  {[String]} url            [需要查询的url]
  * @return {[String | Object]}       [返回对应的query]
  */
-export default function parseUrlQuery(key, url) {
+function parseQuery(key, url) {
   var url = url ? url : window.location.href
-  var search = url.substring(url.lastIndexOf('?') + 1)
+  var search = url.substring(url.lastIndexOf('?') + 1) || ''
   if (key) {
     var reg = new RegExp('(^|&)' + key + '=([^&]*)(&|$)', 'i');
     var r = search.substr(1).match(reg);
@@ -14,7 +14,7 @@ export default function parseUrlQuery(key, url) {
       return decodeURIComponent(r[2]);
     }
     return null;
-  } else
+  } else {
     var query = JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     for (var key in query) {
@@ -25,3 +25,4 @@ export default function parseUrlQuery(key, url) {
     return query;
   }
 }
+module.exports = parseQuery

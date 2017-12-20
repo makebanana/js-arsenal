@@ -15,5 +15,4 @@ var deepClone = function fnDeepClone(obj){
   return obj;
 }
 
-export default deepClone
-    
+module.exports = deepClone

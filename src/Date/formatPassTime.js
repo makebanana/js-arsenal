@@ -3,7 +3,7 @@
 * @param  {[Number]} startTime      [开始时间时间错]
 * @return {[String]}                [返回处理好的字符串]
 */
-export default function formatPassTime(startTime) {
+function formatPassTime(startTime) {
   if (Date.parse(new Date(startTime)) === NaN) return startTime;
 
   let returnText = navigator.language.indexOf('zn') > -1 ?

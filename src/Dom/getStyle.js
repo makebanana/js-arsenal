@@ -44,7 +44,7 @@ var getStyle = ieVersion < 9 ? function(element, styleName) {
   }
 };
 
-export default getStyle
+module.exports = getStyle
 
 /**
  * [getCssValue 获取某个元素的某个样式值]

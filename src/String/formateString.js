@@ -7,11 +7,14 @@
  /** demo
  *   let tempStr =  '<div>{#editBtn#}</div>'
  *   if (iCanEdit) {
- *      tempStr = formateString(tempStr, '<button>编辑</button>')
+ *      tempStr = formateString(tempStr, { editBtn:'<button>编辑</button>' })
  *   }
  **/
-export default function formateString(str, data) {
-    return str.replace(/\{#(\w+)#\}/g, function (match, key) {
-        return _typeof(data[key]) === undefined ? '' : data[key];
-    });
+function formateString(str, data) {
+  if (typeof str !== 'string' || !str) { return '' }
+  var turnData = typeof data === 'object' ? data : {}
+  return str.replace(/\{#(\w+)#\}/g, function (match, key) {
+    return typeof turnData[key] === 'undefined' ? '' : turnData[key];
+  });
 }
+module.exports = formateString

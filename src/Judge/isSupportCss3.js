@@ -24,4 +24,4 @@ var isSupportCss3 = (function initBrowser () {
    };
 })();
 
-export default isSupportCss3
+module.exports = isSupportCss3

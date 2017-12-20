@@ -1,4 +1,4 @@
-export function on = (function () {
+var on = (function () {
   if (document.addEventListener) {
     return function (element, event, handler) {
       if (element && event && handler) {
@@ -14,7 +14,7 @@ export function on = (function () {
   }
 })();
 
-export function off = (function () {
+var off = (function () {
   if (document.removeEventListener) {
     return function (element, event, handler) {
       if (element && event) {
@@ -29,3 +29,8 @@ export function off = (function () {
     }
   }
 })();
+
+module.exports = {
+  on: on,
+  off: off
+}

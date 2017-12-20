@@ -5,7 +5,7 @@ function camelCase (name) {
   }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 };
 
-export default function setStyle(element, styleName, value) {
+function setStyle(element, styleName, value) {
   if (!element || !styleName) return;
 
   if (typeof styleName === 'object') {
@@ -23,3 +23,5 @@ export default function setStyle(element, styleName, value) {
     }
   }
 };
+
+module.exports = setStyle
