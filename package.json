@@ -1,0 +1,12 @@
+{
+  "name": "js-arsenal",
+  "version": "0.0.1",
+  "description": "Record some segments of the JavaScript code segment",
+  "scripts": {},
+  "keywords": [
+    "javascript",
+    "code segment",
+    "useful"
+  ],
+  "license": "MIT"
+}
