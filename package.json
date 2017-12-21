@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Record some segments of the JavaScript code segment",
   "scripts": {
-    "test": "jest test/* --coverage"
+    "test": "jest --env=jsdom --watch"
   },
   "keywords": [
     "javascript",
@@ -20,7 +20,7 @@
       "^@/(.*)$": "<rootDir>/src/$1"
     },
     "mapCoverage": true,
-    "testEnvironment": "node",
+    "testMatch": ["<rootDir>/test/**/?(*.)(test).js"],
     "testURL": "http://localhost",
     "coverageDirectory": "<rootDir>/test/coverage",
     "collectCoverageFrom": [

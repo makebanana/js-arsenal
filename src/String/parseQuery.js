@@ -6,16 +6,16 @@
  */
 function parseQuery(key, url) {
   var url = url ? url : window.location.href
-  var search = url.substring(url.lastIndexOf('?') + 1) || ''
-  if (key) {
+  var search = url.split('?')[1] || ''
+  if (typeof key !== 'undefined') {
     var reg = new RegExp('(^|&)' + key + '=([^&]*)(&|$)', 'i');
-    var r = search.substr(1).match(reg);
+    var r = search.match(reg);
     if (r != null) {
       return decodeURIComponent(r[2]);
     }
     return null;
   } else {
-    var query = JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+    var query = search ? JSON.parse('{"' + search.replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}') : {};
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     for (var key in query) {
       if (hasOwnProperty.bind(query, key)) {
