@@ -1,7 +1,8 @@
 var deepClone = function fnDeepClone(obj){
-  var result = typeof obj.splice === 'function' ? [] : {};
+  var result;
   var key;
   if (obj && typeof obj === 'object'){
+    result = typeof obj.splice === 'function' ? [] : {};
     for (key in obj ){
       if (obj[key] && typeof obj[key] === 'object'){
         result[key] = fnDeepClone(obj[key]);//如果对象的属性值为object的时候，递归调用deepClone，即再把某个值对象复制一份到新的对象的对应值中

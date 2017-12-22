@@ -21,6 +21,7 @@ var getBrowser = (function browserSingle () {
     }
     return browser;
   }
+  return returnBrowser
 })()
 
 module.exports = getBrowser
