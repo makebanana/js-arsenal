@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Record some segments of the JavaScript code segment",
   "scripts": {
-    "test": "jest --env=jsdom --coverage",
+    "test": "jest --env=jsdom --watch",
     "webpack": "node build/webpack",
     "rollup": "node build/rollup",
     "gulp": "node build/gulp"

@@ -3,19 +3,18 @@
 * @param  {[Number]} startTime      [开始时间时间错]
 * @return {[String]}                [返回处理好的字符串]
 */
-function formatPassTime(startTime) {
+function formatPassTime(startTime, isZh) {
   if (!startTime) return startTime
 
   // ios 2017-06-12 => 2017/06/12
   var startTime = typeof startTime === 'string' ? startTime.replace(/-/g, '/') : startTime
   if (isNaN(Date.parse(new Date(startTime)))) return startTime;
 
-  var isZh = navigator.language.indexOf('zh') > -1;
-  var returnText = isZh ?
-  [' 年前', ' 个月前', ' 天前', ' 小时前', ' 分钟前', ' 秒前', '刚刚'] :
-  [' year', ' month', ' day', ' hour', ' min', ' sec', 'just now'];
+  var isZh = isZh !== false
+  var returnText = isZh
+  ? [' 年前', ' 个月前', ' 天前', ' 小时前', ' 分钟前', ' 秒前', '刚刚']
+  : [' year', ' month', ' day', ' hour', ' min', ' sec', 'just now'];
   var timeStamp = Date.parse(new Date()) - Date.parse(new Date(startTime));
-
   if (timeStamp < 0) return returnText[6];
 
   var day = ToInteger(timeStamp / (1000 * 60 * 60 * 24));
