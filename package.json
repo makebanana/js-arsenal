@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "Record some segments of the JavaScript code segment",
   "scripts": {
-    "test": "jest --env=jsdom --coverage"
+    "test": "jest --env=jsdom --coverage",
+    "webpack": "node build/webpack",
+    "gulp": "node build/gulp",
+    "rollup": "node build/rollup"
   },
   "keywords": [
     "javascript",
@@ -12,15 +15,29 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "jest": "^22.0.3"
+    "chalk": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-umd": "^0.2.1",
+    "jest": "^22.0.3",
+    "ora": "^1.2.0",
+    "rimraf": "^2.6.0",
+    "rollup": "^0.52.3",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "webpack": "^3.6.0"
   },
   "jest": {
-    "moduleFileExtensions": ["js"],
+    "moduleFileExtensions": [
+      "js"
+    ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
     },
     "mapCoverage": true,
-    "testMatch": ["<rootDir>/test/**/?(*.)(test).js"],
+    "testMatch": [
+      "<rootDir>/test/**/?(*.)(test).js"
+    ],
     "testURL": "http://localhost",
     "coverageDirectory": "<rootDir>/test/coverage",
     "collectCoverageFrom": [
