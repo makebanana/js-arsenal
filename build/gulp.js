@@ -1,19 +1,13 @@
 const gulp = require('gulp')
 
-// 引入兼容CMD AMD 的 插件
-const umd = require('gulp-umd')
-
-// 改个名字还要插件 666
-const rename = require('gulp-rename')
-
-// 删除文件为了配合流 也要引入
-const clean = require('gulp-clean')
-
-// 实现node.js 命令行环境的 loading效果 浮夸哈哈哈
-const ora = require('ora')
+//引入 优化task的异步任务
+const runSequence = require('run-sequence');
 
 // 删除某个大兄弟
-const rm = require('rimraf')
+const clean = require('gulp-clean')
+
+// AMD CMD
+const umd = require('gulp-umd')
 
 // 提供了一些用于处理文件路径的工具 node自带
 const path = require('path')
@@ -21,18 +15,27 @@ const path = require('path')
 // 命令行颜色console  浮夸 + 1
 const chalk = require('chalk')
 
-// 输出茅坑必须是绝对路径
-const outPath = path.resolve(__dirname, '../lib')
+// 腾空新家
+gulp.task('clean', () => {
+  return gulp.src(['./lib/*', '!./lib/*.js'])
+    .pipe(clean())
+})
 
+// 获取搬家任务
+gulp.task('move', ['clean'], () => {
+  return gulp.src('./src/*/*.js')
+    .pipe(umd())
+    .pipe(gulp.dest('./lib'))
+})
 
-// 配置主线任务
 gulp.task('default', () => {
-  return gulp.src('./src/index.js')
-      .pipe(umd())
-      .pipe(rename('gulp_index.js'))
-      .pipe(gulp.dest('./lib'))
-})
+  console.log(chalk.yellow('  Gulp begin'))
+  runSequence('move', () => {
+    console.log(chalk.cyan('  Gulp complete.\n'))
+    console.log(chalk.yellow(
+      '  Tip: Go and look at your output'
+    ))
+  })
 
-gulp.start(() => {
-  console.log(arguments)
 })
+gulp.start()

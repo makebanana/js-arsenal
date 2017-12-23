@@ -63,19 +63,28 @@ watcher.on('event', event => {
   if (event.code === 'START') { spinner.start(); return }
 
   if (event.code === 'END') {
+    // 结束浮夸的loading
+    spinner.stop()
+
+    watcher.close();
+
     console.log(chalk.cyan('  Build complete.\n'))
     console.log(chalk.yellow(
       '  Tip: Go and look at your output'
     ))
 
-    watcher.close();
     return
   }
 
   if ('ERROR,FATAL'.indexOf(event.code) > -1) {
-      console.log(chalk.red('  Build failed with errors.\n'))
-      watcher.close();
-      return
+    // 结束浮夸的loading
+    spinner.stop()
+
+    watcher.close();
+
+    console.log(chalk.red('  Build failed with errors.\n'))
+
+    return
   }
   // event.code can be one of:
   //   START        — the watcher is (re)starting
