@@ -24,6 +24,29 @@ test('In 200 seconds, addCount()*3, just run one time', () => {
   })
 })
 
+test('In 400 seconds, addCount()*3, just run one time', () => {
+  expect.assertions(1);
+
+  const tick = new Promise((resolve, reject) => {
+    let count = 0
+
+    const addCount = throttle(() => {
+      count = count + 1
+    })
+
+    addCount()
+    addCount()
+    addCount()
+
+    setTimeout(() => {
+      resolve(count)
+    }, 400)
+  });
+  return tick.then( count => {
+    return expect(count).toEqual(1)
+  })
+})
+
 test('In 500 seconds, addCount()*3, run 3 times', () => {
   expect.assertions(1);
 

@@ -21,3 +21,13 @@ test('a = { aa: { bb: 123 } }, deepClone(a) equal {aa: { bb: 123 } } ,not toCont
   let a = { aa: { bb: 123 } }
   expect(deepClone(a)).not.toContainEqual(a)
 })
+
+
+test('deepClone([{ bb: 123 }]) return [{ bb: 123 }]', () => {
+  expect(deepClone([{ bb: 123 }])).toEqual([{ bb: 123 }])
+})
+
+test('a = [{ bb: 123 }], deepClone(a) equal [{ bb: 123 }] ,not toContainEqual a', () => {
+  let a = [{ bb: 123 }]
+  expect(deepClone(a)).not.toContainEqual(a)
+})

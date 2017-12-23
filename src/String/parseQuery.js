@@ -6,7 +6,7 @@
  */
 function parseQuery(key, url) {
   var url = url ? url : window.location.href
-  var search = url.split('?')[1] || ''
+  var search = url.split('?')[1] || '';
   if (typeof key !== 'undefined') {
     var reg = new RegExp('(^|&)' + key + '=([^&]*)(&|$)', 'i');
     var r = search.match(reg);
@@ -15,14 +15,41 @@ function parseQuery(key, url) {
     }
     return null;
   } else {
-    var query = search ? JSON.parse('{"' + search.replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}') : {};
+    var obj = {};
+    var len;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
-    for (var key in query) {
-      if (hasOwnProperty.bind(query, key)) {
-        query[key] =  decodeURIComponent(query[key]);
+    if (typeof search === 'string' && search.length) {
+      search = search.split('&');
+      len = search.length;
+      for (var i = 0; i < len; ++i) {
+        var x = search[i].replace(/\+/g, '%20'),
+            idx = x.indexOf('='),
+            kstr, vstr, k, v;
+
+        if (idx >= 0) {
+          kstr = x.substr(0, idx);
+          vstr = x.substr(idx + 1);
+        } else {
+          kstr = x;
+          vstr = '';
+        }
+
+        k = decodeURIComponent(kstr);
+        v = decodeURIComponent(vstr);
+
+        if (!hasOwnProperty.call(obj, k)) {
+          obj[k] = v;
+        } else if (Array.isArray(obj[k])) {
+          obj[k].push(v);
+        } else {
+          obj[k] = [obj[k], v];
+        }
       }
     }
-    return query;
+    return obj;
   }
 }
+
+
+
 module.exports = parseQuery

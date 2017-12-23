@@ -5,6 +5,10 @@ test('formatPassTime(Date.now()) return “just now" or "刚刚”', () => {
   expect(formatPassTime(Date.now())).toBe(['just now', '刚刚'][isZh])
 })
 
+test('formatPassTime(Date.now() + 1000) return “just now" or "刚刚”', () => {
+  expect(formatPassTime(Date.now() + 1000)).toBe(['just now', '刚刚'][isZh])
+})
+
 test('formatPassTime(Date.now() - 1000) return “1 sec ago" or “1 秒前”', () => {
   expect(formatPassTime(Date.now() - 1000)).toBe(['1 sec ago', '1秒前'][isZh])
 })

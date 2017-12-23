@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Record some segments of the JavaScript code segment",
   "scripts": {
-    "test": "jest --env=jsdom --watch"
+    "test": "jest --env=jsdom --coverage"
   },
   "keywords": [
     "javascript",

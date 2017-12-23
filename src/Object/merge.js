@@ -1,9 +1,10 @@
 function marge (target) {
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
   for (var i = 1, j = arguments.length; i < j; i++) {
-    let source = arguments[i] || {};
+    var source = arguments[i];
     if (typeof source !== 'object') { break; }
     for (var prop in source) {
-      if (source.hasOwnProperty(prop)) {
+      if (hasOwnProperty.call(source, prop)) {
         let value = source[prop];
         if (value !== undefined) {
           target[prop] = value;

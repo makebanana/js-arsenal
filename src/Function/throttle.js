@@ -9,7 +9,7 @@ function throttle(func, times) {
         args,
         context;
     if (typeof times === 'undefined') {
-        times = 500;
+        times = 300;
     }
     return function() {
         context = this;

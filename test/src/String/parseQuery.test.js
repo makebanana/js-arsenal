@@ -31,6 +31,16 @@ test('url=xxx.com?name=bbb&key=%40%3D23 parseQuery() is { name: "bbb", key: "@=2
   expect(parseQuery()).toEqual({name: 'bbb', key: '@=23'})
 })
 
+test('url=xxx.com?name=bbb&name=ccc&name=ddd&key=%40%3D23 parseQuery() is {name: ["bbb", "ccc", "ddd"], key: "@=23"}', () => {
+  setSearch('?name=bbb&name=ccc&name=ddd&key=%40%3D23')
+  expect(parseQuery()).toEqual({name: ['bbb', 'ccc', 'ddd'], key: '@=23'})
+})
+
+test('url=xxx.com?name=bbb&name&name=ddd&key=%40%3D23 parseQuery() is{name: ["bbb", "", "ddd"], key: "@=23"}', () => {
+  setSearch('?name=bbb&name&name=ddd&key=%40%3D23')
+  expect(parseQuery()).toEqual({name: ['bbb', '', 'ddd'], key: '@=23'})
+})
+
 test('parseQuery() is {}', () => {
   expect(parseQuery()).toEqual({})
 })
